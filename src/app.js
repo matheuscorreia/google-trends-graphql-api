@@ -19,4 +19,6 @@ app.use(mount('/playground', koaPlayground({
   endpoint: '/graphql',
 })))
 
-app.listen(8000)
+app.listen(process.env.PORT || 8080, () => {
+  console.log('Listening at port ${process.env.PORT || 8080}')
+})
