@@ -19,11 +19,10 @@
     "koa-mount": "^3.0.0"
   },
   "scripts": {
-    "serve": "node dist/app.js",
     "build": "rm -rf dist/* && babel src --out-dir dist --copy-files",
     "start": "nodemon src/app.js --exec babel-node",
     "update-schema": "babel-node ./scripts/update-schema.js",
-    "postinstall": "yarn build && yarn serve"
+    "postinstall": "yarn build"
   },
   "engines": {
     "node": "10.2.1"
