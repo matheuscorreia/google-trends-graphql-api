@@ -1,6 +1,6 @@
 // @flow
 
-import 'isomorphic-fetch'
+import 'babel-polyfill'
 import Koa from 'koa'
 import mount from 'koa-mount'
 import graphqlHTTP from 'koa-graphql'
@@ -19,7 +19,4 @@ app.use(mount('/playground', koaPlayground({
   endpoint: '/graphql',
 })))
 
-app.listen(8000, () => {
-  console.log('server listening at http://localhost:8000');
-  console.log('graphql playground available at http://localhost:8000/playground');
-})
+app.listen(8000)
