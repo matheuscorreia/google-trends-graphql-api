@@ -1,5 +1,5 @@
 //@flow
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLInt } from 'graphql';
 
 import TimelineDataPointType from './TimelineDataPointType'
 
@@ -10,6 +10,10 @@ const InterestOverTimeType = new GraphQLObjectType({
     timelineData: {
       type: new GraphQLList(TimelineDataPointType),
       resolve: obj => obj.timelineData,
+    },
+    averages: {
+      type: new GraphQLList(GraphQLInt),
+      resolve: obj => obj.averages
     }
   })
 })
