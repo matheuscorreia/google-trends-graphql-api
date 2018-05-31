@@ -1,0 +1,32 @@
+"""
+Show data timeline info for term trends. For multiple terms, also shows average
+"""
+type InterestOverTime {
+  timelineData: [TimelineDataPoint]
+}
+
+"""Root field for all queries"""
+type Query {
+  interestOverTime(terms: [String]!): InterestOverTime
+}
+
+"""Data point on data timeline"""
+type TimelineDataPoint {
+  """Time of point represented in seconds"""
+  time: Int
+
+  """Formatted time representing range from this data point to the next"""
+  formattedTime: String
+
+  """Formatted time representing date of this data point"""
+  formattedAxisTime: String
+
+  """Array of values containing y axis values for each term"""
+  value: [Int]
+
+  """Array of booleans informing if data is projected or exists"""
+  hasData: [Boolean]
+
+  """Array of values mathing `value` field but all formatted"""
+  formattedValue: [String]
+}

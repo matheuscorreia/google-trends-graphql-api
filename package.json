@@ -1,0 +1,25 @@
+{
+  "name": "google-trends-graphql-api",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.73.0",
+    "nodemon": "^1.17.5"
+  },
+  "dependencies": {
+    "google-trends-api": "^4.6.2",
+    "graphql": "^0.13.2",
+    "graphql-playground-middleware": "^1.1.2",
+    "koa": "^2.5.1",
+    "koa-graphql": "^0.7.5",
+    "koa-mount": "^3.0.0"
+  },
+  "scripts": {
+    "start": "nodemon src/app.js --exec babel-node",
+    "update-schema": "babel-node ./scripts/update-schema.js"
+  }
+}
