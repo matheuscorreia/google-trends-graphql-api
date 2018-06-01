@@ -4,6 +4,7 @@ import { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLNonNull } from 'g
 import api from '../api'
 
 import InterestOverTimeType from './interestOverTime/InterestOverTimeType';
+import commonArgs from './commonArgs';
 
 const QueryType = new GraphQLObjectType({
   name: 'Query',
@@ -11,12 +12,8 @@ const QueryType = new GraphQLObjectType({
   fields: () => ({
     interestOverTime: {
       type: InterestOverTimeType,
-      args: {
-        terms: {
-          type: new GraphQLNonNull(GraphQLList(GraphQLString))
-        },
-      },
-      resolve: async (obj, args) => api({ keyword: args.terms }),
+      args: commonArgs,
+      resolve: async (_, args) => api(args),
     }
   })
 })

@@ -26,7 +26,13 @@ type Args = {
   granularTimeResolution?: boolean, 
 }
 
-export default async (args: Args, method: Methods = METHODS.INTEREST_OVER_TIME) => {
+export default async ({
+  hostLocation,
+  timezone,
+  startTime,
+  endTime,
+  ...args
+}: Args, method: Methods = METHODS.INTEREST_OVER_TIME) => {
   const {
     AUTO_COMPLETE,
     INTEREST_BY_REGION,
@@ -52,10 +58,17 @@ export default async (args: Args, method: Methods = METHODS.INTEREST_OVER_TIME) 
   }
 
   const result = await apiMethods[method]({
-    keyword: args.keyword,
+    ...args,
+    startTime: startTime ? new Date(startTime) : undefined,
+    endTime: endTime ? new Date(endTime) : undefined,
+    hl: hostLocation,
+    tz: timezone,
   })
 
-  const resultParsed = JSON.parse(result);
-
-  return resultParsed.default;
+  try {
+    const resultParsed = JSON.parse(result);
+    return resultParsed.default;
+  } catch (err) {
+    console.error(err);
+  }
 }
